@@ -1,0 +1,6 @@
+@BluesenseChat.WebAPI_HostAddress = http://localhost:5229
+
+GET {{BluesenseChat.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
