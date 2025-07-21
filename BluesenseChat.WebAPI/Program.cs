@@ -153,7 +153,9 @@ app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "BluesenseChat API V1");
     c.RoutePrefix = "swagger"; // veya "" ana sayfa istersen
-});// Map Controllers
+});
+
+// Map Controllers
 app.MapControllers();
 app.MapHub<MessageHub>("/hubs/message");
 
