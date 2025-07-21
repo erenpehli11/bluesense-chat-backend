@@ -26,7 +26,11 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("PostgreSQL")));
 
-
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true)
+    .AddEnvironmentVariables();
 
 // Register Repositories & Unit of Work
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
@@ -148,7 +152,13 @@ app.UseHttpsRedirection();
 // Enable Authorization (optional for now)
 app.UseAuthentication();
 app.UseAuthorization();
-// Map Controllers
+
+app.UseSwagger();
+app.UseSwaggerUI(c =>
+{
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BluesenseChat API V1");
+    c.RoutePrefix = "swagger";
+});// Map Controllers
 app.MapControllers();
 app.MapHub<MessageHub>("/hubs/message");
 

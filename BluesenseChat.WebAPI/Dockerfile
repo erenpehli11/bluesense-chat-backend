@@ -2,6 +2,11 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 
+ARG GIT_COMMIT
+ARG GIT_BRANCH
+LABEL git-commit=$GIT_COMMIT
+LABEL git-branch=$GIT_BRANCH
+
 COPY ["BluesenseChat.WebAPI/BluesenseChat.WebAPI.csproj", "BluesenseChat.WebAPI/"]
 COPY ["BluesenseChat.Application/BluesenseChat.Application.csproj", "BluesenseChat.Application/"]
 COPY ["BluesenseChat.Domain/BluesenseChat.Domain.csproj", "BluesenseChat.Domain/"]
