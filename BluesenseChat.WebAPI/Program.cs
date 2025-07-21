@@ -139,6 +139,8 @@ var app = builder.Build();
 
 app.UseStaticFiles();
 
+app.UseRouting();
+
 // Enable Swagger in Development
 
 // Enable HTTPS
@@ -155,7 +157,7 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger"; // veya "" ana sayfa istersen
 });
 
-app.UseRouting();
+
 // Map Controllers
 app.MapControllers();
 app.MapHub<MessageHub>("/hubs/message");
