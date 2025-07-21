@@ -155,6 +155,7 @@ app.UseSwaggerUI(c =>
     c.RoutePrefix = "swagger"; // veya "" ana sayfa istersen
 });
 
+app.UseRouting();
 // Map Controllers
 app.MapControllers();
 app.MapHub<MessageHub>("/hubs/message");
