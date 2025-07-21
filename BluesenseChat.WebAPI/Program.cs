@@ -153,12 +153,15 @@ if (app.Environment.IsDevelopment())
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.UseSwagger();
-app.UseSwaggerUI(c =>
+if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Docker")
 {
-    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BluesenseChat API V1");
-    c.RoutePrefix = "swagger";
-});// Map Controllers
+    app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("/swagger/v1/swagger.json", "BluesenseChat API V1");
+        c.RoutePrefix = "swagger";
+    });
+}// Map Controllers
 app.MapControllers();
 app.MapHub<MessageHub>("/hubs/message");
 
