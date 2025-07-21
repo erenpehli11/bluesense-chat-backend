@@ -154,7 +154,7 @@ app.UseSwagger();
 app.UseSwaggerUI(c =>
 {
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "BluesenseChat API V1");
-    c.RoutePrefix = ""; // veya "" ana sayfa istersen
+    c.RoutePrefix = "swagger"; // veya "" ana sayfa istersen
 });
 
 
