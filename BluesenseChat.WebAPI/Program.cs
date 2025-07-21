@@ -147,7 +147,7 @@ if (app.Environment.IsDevelopment())
 }
 
 // Enable HTTPS
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 // Enable Authorization (optional for now)
 app.UseAuthentication();
