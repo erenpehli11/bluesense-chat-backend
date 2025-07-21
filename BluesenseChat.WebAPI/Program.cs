@@ -140,11 +140,6 @@ var app = builder.Build();
 app.UseStaticFiles();
 
 // Enable Swagger in Development
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 // Enable HTTPS
 //app.UseHttpsRedirection();
