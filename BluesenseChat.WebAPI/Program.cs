@@ -148,15 +148,12 @@ app.UseStaticFiles();
 app.UseAuthentication();
 app.UseAuthorization();
 
-if (app.Environment.IsDevelopment() || app.Environment.EnvironmentName == "Docker")
+app.UseSwagger();
+app.UseSwaggerUI(c =>
 {
-    app.UseSwagger();
-    app.UseSwaggerUI(c =>
-    {
-        c.SwaggerEndpoint("/swagger/v1/swagger.json", "BluesenseChat API V1");
-        c.RoutePrefix = "swagger";
-    });
-}// Map Controllers
+    c.SwaggerEndpoint("/swagger/v1/swagger.json", "BluesenseChat API V1");
+    c.RoutePrefix = "swagger"; // veya "" ana sayfa istersen
+});// Map Controllers
 app.MapControllers();
 app.MapHub<MessageHub>("/hubs/message");
 
